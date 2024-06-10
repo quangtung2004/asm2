@@ -1,0 +1,53 @@
+<div class="container">
+    <h1>Update Sản Phẩm</h1>
+    <form [formGroup]="createProductForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label for="title">Tiêu đề:</label>
+            <input type="text" class="form-control" id="title" name="title" formControlName="title" required>
+            @if(createProductForm.controls['title'].errors?.['required']&& createProductForm.controls['title'].touched){
+            <small class="text-danger text-small">Không được bỏ trống</small>
+            }@if(createProductForm.controls['title'].errors?.['minlength']&&
+            createProductForm.controls['title'].touched){
+            <small class="text-danger text-small">Phải lớn hơn 6 giá trị</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="price">Giá mới:</label>
+            <input type="number" class="form-control" id="price" name="price" formControlName="price" required>
+            @if(createProductForm.controls['price'].errors?.['required']&&
+            createProductForm.controls['price'].touched){
+            <small class="text-danger text-small">Không được bỏ trống</small>
+            }@if(createProductForm.controls['price'].errors?.['min']&&
+            createProductForm.controls['price'].touched){
+            <small class="text-danger text-small">Giá phải lớn hơn 0</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="category">Danh mục:</label>
+            <select class="form-control" id="category" name="category" formControlName="category" required>
+                <option value="">Select Category</option>
+                <option value="electronics">Điện tử</option>
+                <option value="fashion">Thời trang</option>
+                <option value="home_appliances">Đồ gia dụng</option>
+                <option value="books">Sách</option>
+                <option value="other">Khác</option>
+            </select>
+            @if(createProductForm.controls['category'].errors?.['required']&&
+            createProductForm.controls['category'].touched){
+            <small class="text-danger text-small">Không được bỏ trống</small>
+            }
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="show_product" formControlName="action"
+                name="show_product">
+            @if(createProductForm.controls['action'].errors?.['required']&&
+            createProductForm.controls['action'].touched){
+            <small class="text-danger text-small">Không được bỏ trống</small>
+            }
+            <label class="form-check-label" for="show_product">Hiển thị sản phẩm</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="createProductForm.invalid">Updtae Sản Phẩm</button>
+    </form>
+</div>

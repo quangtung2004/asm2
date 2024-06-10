@@ -1,0 +1,26 @@
+<div class="container">
+    <button class="btn btn-primary" [routerLink]="['/products/create']">Thêm sản phẩm</button>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Price</td>
+                <td>Category</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        @for(product of products; track product.id){
+        <tbody>
+            <th>{{product.id}}</th>
+            <th>{{product.title}}</th>
+            <th>{{product.price}}</th>
+            <th>{{product.category}}</th>
+            <th>
+                <button class="btn btn-primary" [routerLink]="['/products/edit',product.id]">Sửa</button>
+                <button (click)="handleDelete(product.id)" class="btn btn-danger">Xóa</button>
+            </th>
+        </tbody>
+        }
+    </table>
+</div>
